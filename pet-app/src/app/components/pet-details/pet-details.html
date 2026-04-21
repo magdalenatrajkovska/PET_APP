@@ -1,0 +1,33 @@
+<p>pet-details works!</p>
+<div class="p-6 max-w-4xl mx-auto" *ngIf="pet">
+
+  <h1 class="text-3xl font-bold mb-4">{{ pet.name }}</h1>
+
+  <img [src]="pet.imageUrl" 
+       class="w-full h-80 object-cover rounded-xl mb-6" />
+
+  <div class="grid grid-cols-2 gap-4 text-gray-700">
+
+    <p><strong>Type:</strong> {{ pet.type }}</p>
+    <p><strong>Age:</strong> {{ pet.age }}</p>
+
+    <p><strong>Energy:</strong> {{ pet.energyLevel }}</p>
+    <p><strong>Space:</strong> {{ pet.spaceNeed }}</p>
+
+    <p><strong>Care:</strong> {{ pet.careLevel }}</p>
+
+    <p>
+      👶 {{ pet.goodWithKids ? 'Good with kids' : 'Not good with kids' }}
+    </p>
+
+    <p>
+      🐾 {{ pet.goodWithPets ? 'Good with pets' : 'Prefers to be alone' }}
+    </p>
+
+  </div>
+
+  <p class="mt-6 text-gray-600">
+    {{ pet.description }}
+  </p>
+
+</div>
