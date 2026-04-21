@@ -1,7 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
 
-@import 'tailwindcss';
-
+/* your global styles */
 body {
-  @apply bg-gray-100;
+  background-color: #347dc6;
+  min-height: 100vh;
+}
+.title {
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600;    /* font-semibold */
+  color: white;
+}
+
+.text-muted {
+  font-size: 0.875rem; /* text-sm */
+  color: #9ca3af;      /* gray-400 */
 }

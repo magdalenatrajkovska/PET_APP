@@ -1,25 +1,44 @@
-<nav class="bg-white shadow-md border-b border-gray-200">
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 
+            w-[95%] max-w-6xl 
+            bg-[#020617]/80 backdrop-blur-md
+            text-white 
+            rounded-2xl shadow-xl 
+            px-6 py-3 z-50 border border-white/10">
 
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+  <div class="flex items-center justify-between">
 
     <!-- Logo -->
-    <div class="flex items-center gap-2 text-xl font-bold text-gray-800">
+    <div class="flex items-center gap-2 text-lg font-semibold">
       🐾 Find Me a Pet
     </div>
 
     <!-- Links -->
-    <div class="hidden md:flex items-center gap-6 text-gray-700 font-medium">
-      <a routerLink="/" class="hover:text-black transition">Home</a>
-      <a routerLink="/add" class="hover:text-black transition">Add Pet</a>
-      <a routerLink="/match" class="hover:text-black transition">Find Match</a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+
+      <a routerLink="/" 
+         routerLinkActive="underline"
+         class="hover:opacity-80 transition">
+        Home
+      </a>
+
+      <a routerLink="/add" 
+         routerLinkActive="underline"
+         class="hover:opacity-80 transition">
+        Add Pet
+      </a>
+
+      <a routerLink="/match" 
+         routerLinkActive="underline"
+         class="hover:opacity-80 transition">
+        Find Match
+      </a>
+
     </div>
 
     <!-- Button -->
-    <div class="flex items-center gap-3">
-      <button class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">
-        Login
-      </button>
-    </div>
+    <button class="bg-white text-black px-4 py-1.5 rounded-full text-sm font-medium hover:bg-gray-200 transition shadow">
+      Login
+    </button>
 
   </div>
 

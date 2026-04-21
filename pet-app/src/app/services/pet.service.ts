@@ -31,7 +31,7 @@ private pets: Pet[] = [
     goodWithKids: true,
     goodWithPets: true,
     description: 'Calm indoor cat',
-    imageUrl: 'https://placekitten.com/401/302'
+    imageUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.naturalhistoryonthenet.com%2Fwp-content%2Fuploads%2F2016%2F12%2FDomestic-Cat.jpg&f=1&nofb=1&ipt=76d3ce2f38f94b5fb4e88a7c26c999d7288b0b86c9a5a3c4f9fd0db99a7523b5'
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ private pets: Pet[] = [
     goodWithKids: true,
     goodWithPets: true,
     description: 'Gentle rabbit that loves carrots',
-    imageUrl: 'https://placekitten.com/402/304'
+    imageUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flive.staticflickr.com%2F65535%2F51310231729_971cb42d84_b.jpg&f=1&nofb=1&ipt=ab00d256b1c95d2b238a212ed382d06fb12a9e392539d2f27f415543bc9e6b9c'
   },
   {
     id: 5,
@@ -83,7 +83,7 @@ private pets: Pet[] = [
     goodWithKids: true,
     goodWithPets: false,
     description: 'Curious cat that loves exploring',
-    imageUrl: 'https://placekitten.com/403/306'
+    imageUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdinoanimals.com%2Fwp-content%2Fuploads%2F2023%2F03%2FDomestic-cat-34.jpg&f=1&nofb=1&ipt=3ef58418e6c7b754baa4108d1e22e5dfb4f76ff79d59399ed4bfd26bd06f4135'
   },
   {
     id: 7,
@@ -96,7 +96,7 @@ private pets: Pet[] = [
     goodWithKids: true,
     goodWithPets: true,
     description: 'Tiny hamster that loves running on wheels',
-    imageUrl: 'https://placekitten.com/404/307'
+    imageUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsp-ao.shortpixel.ai%2Fclient%2Fq_lossy%2Cret_img%2Cw_1000%2Fhttps%3A%2F%2Fwww.ukpets.com%2Fblog%2Fwp-content%2Fuploads%2F2023%2F03%2Fsyrian-hamster-colors-1.jpg&f=1&nofb=1&ipt=e7f0d4d03eb1f8b19c23ce2b2ce812de4712cd7d034d6414277cb069ce583033'
   },
   {
     id: 8,
@@ -122,7 +122,7 @@ private pets: Pet[] = [
     goodWithKids: true,
     goodWithPets: false,
     description: 'Colorful parrot that mimics sounds',
-    imageUrl: 'https://placekitten.com/405/309'
+    imageUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.WtJUUDtxA08Hd6po1Fv3TwHaEO%3Fpid%3DApi&f=1&ipt=1097964c907a19acb1cf62497d6a1d87f05b429f738a61cfadcab61c21002fd6&ipo=images'
   },
   {
     id: 10,
@@ -135,7 +135,7 @@ private pets: Pet[] = [
     goodWithKids: true,
     goodWithPets: true,
     description: 'Playful cat that loves chasing toys',
-    imageUrl: 'https://placekitten.com/406/310'
+    imageUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.balisafarimarinepark.com%2Fwp-content%2Fuploads%2F2022%2F08%2FGettyImages-172050389-8ab8710.jpg&f=1&nofb=1&ipt=7eadd170537878aad6a456e71b29374f8a689afb2412b889ec431864edf6547b'
   }
 ];
 
