@@ -40,7 +40,7 @@
     <div class="relative">
 
       <img 
-        src="https://placedog.net/500/400"
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fb2%2Fcf%2F02%2Fb2cf025c1849a4a939c261088783e8fe.jpg&f=1&nofb=1&ipt=6cf994e7f2b7d28557ee90b96c3de4d161db4dc8ae4962723e4be450f44fe245"
         class="rounded-2xl shadow-xl w-full object-cover"
       />
 
@@ -62,5 +62,18 @@
     </app-pet-card>
 
   </div>
+  <button 
+  *ngIf="showScrollTop"
+  (click)="scrollToTop()"
+  class="fixed bottom-6 right-6 
+         bg-gradient-to-r from-blue-500 to-cyan-400 
+         text-white w-12 h-12 
+         rounded-full shadow-lg 
+         flex items-center justify-center
+         hover:scale-110 transition z-50">
+
+  ↑
+
+</button>
 
 </div>

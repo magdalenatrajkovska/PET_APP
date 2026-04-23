@@ -5,6 +5,12 @@ import { Pet } from '../models/pet';
   providedIn: 'root'
 })
 export class PetService {
+  constructor() {
+  const saved = localStorage.getItem('pets');
+  if (saved) {
+    this.pets = JSON.parse(saved);
+  }
+}
 
 private pets: Pet[] = [
   {
@@ -66,7 +72,7 @@ private pets: Pet[] = [
     age: 5,
     energyLevel: 'High',
     spaceNeed: 'Large',
-    careLevel: 'Hard',
+    careLevel: 'High',
     goodWithKids: false,
     goodWithPets: true,
     description: 'Strong and protective guard dog',
@@ -118,7 +124,7 @@ private pets: Pet[] = [
     age: 7,
     energyLevel: 'High',
     spaceNeed: 'Medium',
-    careLevel: 'Hard',
+    careLevel: 'High',
     goodWithKids: true,
     goodWithPets: false,
     description: 'Colorful parrot that mimics sounds',
@@ -138,6 +144,25 @@ private pets: Pet[] = [
     imageUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.balisafarimarinepark.com%2Fwp-content%2Fuploads%2F2022%2F08%2FGettyImages-172050389-8ab8710.jpg&f=1&nofb=1&ipt=7eadd170537878aad6a456e71b29374f8a689afb2412b889ec431864edf6547b'
   }
 ];
+private types: string[] = [
+  'Dog',
+  'Cat',
+  'Rabbit',
+  'Parrot',
+  'Hamster'
+];
+
+getTypes(): string[] {
+  return this.types;
+}
+
+addType(type: string) {
+  const formatted = type.trim();
+
+  if (!this.types.includes(formatted)) {
+    this.types.push(formatted);
+  }
+}
 
 
   getPets(): Pet[] {
@@ -147,4 +172,18 @@ private pets: Pet[] = [
   getPetById(id: number): Pet | undefined {
     return this.pets.find(p => p.id === id);
   }
+addPet(pet: Pet) {
+  const newPet: Pet = {
+    ...pet,
+    id: this.generateId()
+  };
+
+  this.pets.push(newPet);
+localStorage.setItem('pets', JSON.stringify(this.pets));
+}
+private generateId(): number {
+  return this.pets.length > 0
+    ? Math.max(...this.pets.map(p => p.id)) + 1
+    : 1;
+}
 }

@@ -1,0 +1,497 @@
+<!-- pet-forum.component.html -->
+<div class="min-h-screen" style="background-color:#fdf8f3; font-family:'DM Sans',sans-serif;">
+
+  <!-- ═══════════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════════ -->
+  <header class="sticky top-0 z-40" style="background:#fff8f0; border-bottom:1.5px solid #f0dece;">
+    <div class="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-lg"
+             style="background:linear-gradient(135deg,#e07840,#c45628);">
+          🐾
+        </div>
+        <div>
+          <p class="text-xs font-medium leading-none" style="color:#a07060;">Local Forum</p>
+          <h1 class="text-base font-bold leading-tight" style="font-family:'Playfair Display',serif;color:#2d1a0e;">
+            PawLocal
+          </h1>
+        </div>
+      </div>
+
+      <!-- Location badge -->
+      <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
+           style="background:#fde8d8;color:#c45628;">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        {{ currentUser.location }}
+      </div>
+
+      <!-- Avatar -->
+      <img [src]="currentUser.avatar" [alt]="currentUser.displayName"
+           class="w-9 h-9 rounded-full object-cover ring-2" style="ring-color:#e07840;"
+           onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=fallback'"/>
+    </div>
+
+    <!-- ── Tab Bar ── -->
+    <div class="max-w-lg mx-auto px-4 flex gap-0">
+      <button (click)="switchTab('feed')"
+              class="flex-1 py-3 text-sm font-semibold relative transition-colors duration-200"
+              [style.color]="activeTab() === 'feed' ? '#c45628' : '#b09080'">
+        <span class="flex items-center justify-center gap-1.5">
+          <span>🐶</span> Nearby Pets
+        </span>
+        @if (activeTab() === 'feed') {
+          <div class="absolute bottom-0 left-1/4 right-1/4 h-0.5 rounded-full tab-indicator"
+               style="background:#c45628;"></div>
+        }
+      </button>
+      <button (click)="switchTab('help')"
+              class="flex-1 py-3 text-sm font-semibold relative transition-colors duration-200"
+              [style.color]="activeTab() === 'help' ? '#c45628' : '#b09080'">
+        <span class="flex items-center justify-center gap-1.5">
+          <span>🙋</span> Ask for Help
+        </span>
+        @if (activeTab() === 'help') {
+          <div class="absolute bottom-0 left-1/4 right-1/4 h-0.5 rounded-full tab-indicator"
+               style="background:#c45628;"></div>
+        }
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       MAIN CONTENT AREA
+  ═══════════════════════════════════════════════ -->
+  <main class="max-w-lg mx-auto px-4 py-5 pb-28">
+
+    <!-- ── Loading State ── -->
+    @if (isLoading()) {
+      <div class="space-y-4">
+        @for (i of [1,2,3]; track i) {
+          <div class="rounded-3xl overflow-hidden" style="background:#fff8f0;">
+            <div class="skeleton w-full h-64"></div>
+            <div class="p-4 space-y-2">
+              <div class="skeleton h-4 w-1/3"></div>
+              <div class="skeleton h-3 w-2/3"></div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- ════════════════════════════════════════
+         TAB: NEARBY PETS FEED
+    ════════════════════════════════════════ -->
+    @if (!isLoading() && activeTab() === 'feed') {
+      <div class="space-y-5">
+
+        <!-- Region notice -->
+        <div class="flex items-center gap-2 px-3 py-2 rounded-2xl text-xs"
+             style="background:#fde8d8;color:#a05030;">
+          <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd"/>
+          </svg>
+          Showing posts from <strong class="ml-0.5">{{ currentUser.location }}</strong> only
+        </div>
+
+        <!-- Post cards -->
+        @for (post of posts(); track post.id) {
+          <article class="post-card rounded-3xl overflow-hidden shadow-sm"
+                   style="background:#ffffff; border:1.5px solid #f0e0d0;">
+
+            <!-- ── Card Header ── -->
+            <div class="flex items-center gap-3 px-4 pt-4 pb-3">
+              <img [src]="post.avatar" [alt]="post.displayName"
+                   class="w-10 h-10 rounded-full object-cover ring-2" style="ring-color:#f0d8c0;"
+                   onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=fallback'"/>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold truncate" style="color:#2d1a0e;">
+                  {{ post.displayName }}
+                </p>
+                <p class="text-xs" style="color:#a08070;">
+                  @{{ post.username }} · {{ timeAgo(post.createdAt) }}
+                </p>
+              </div>
+              <!-- Pet name chip -->
+              <span class="px-2.5 py-1 rounded-full text-xs font-semibold shrink-0"
+                    style="background:#fde8d8;color:#c45628;">
+                🐾 {{ post.petName }}
+              </span>
+            </div>
+
+            <!-- ── Post Image ── -->
+            <div class="overflow-hidden mx-3 rounded-2xl" style="height:280px;">
+              <img [src]="post.image" [alt]="post.petName"
+                   class="post-img w-full h-full object-cover"
+                   onerror="this.src='https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&h=600&fit=crop'"/>
+            </div>
+
+            <!-- ── Action Bar ── -->
+            <div class="flex items-center gap-1 px-4 pt-3 pb-2">
+
+              <!-- Like button -->
+              <button (click)="toggleLike(post)"
+                      class="like-btn flex items-center gap-1.5 px-3 py-2 rounded-2xl text-sm font-medium transition-all duration-150 active:scale-95"
+                      [class.liked]="isLiked(post.id!)"
+                      [style.background]="isLiked(post.id!) ? '#fde8d8' : '#f5ede6'"
+                      [style.color]="isLiked(post.id!) ? '#c45628' : '#8a6a5a'">
+                <svg class="w-4.5 h-4.5 transition-all duration-150"
+                     style="width:18px;height:18px;"
+                     [attr.fill]="isLiked(post.id!) ? '#c45628' : 'none'"
+                     [attr.stroke]="isLiked(post.id!) ? '#c45628' : 'currentColor'"
+                     stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+                {{ post.likes }}
+              </button>
+
+              <!-- Comment button -->
+              <button class="flex items-center gap-1.5 px-3 py-2 rounded-2xl text-sm font-medium transition-colors"
+                      style="background:#f5ede6;color:#8a6a5a;">
+                <svg style="width:18px;height:18px;" fill="none" stroke="currentColor"
+                     stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+                {{ post.commentCount }}
+              </button>
+
+              <!-- Spacer -->
+              <div class="flex-1"></div>
+
+              <!-- Share button -->
+              <button class="p-2 rounded-2xl transition-colors" style="background:#f5ede6;color:#8a6a5a;">
+                <svg style="width:18px;height:18px;" fill="none" stroke="currentColor"
+                     stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- ── Caption ── -->
+            <div class="px-4 pb-4">
+              <p class="text-sm leading-relaxed" style="color:#4a3020;">
+                {{ post.description }}
+              </p>
+            </div>
+
+          </article>
+        }
+
+        <!-- Empty state -->
+        @if (posts().length === 0) {
+          <div class="text-center py-16">
+            <div class="text-5xl mb-3">🐾</div>
+            <p class="font-semibold" style="color:#8a6a5a;">No posts in {{ currentUser.location }} yet</p>
+            <p class="text-sm mt-1" style="color:#b09080;">Be the first to share your pet!</p>
+          </div>
+        }
+
+      </div>
+    }
+
+    <!-- ════════════════════════════════════════
+         TAB: ASK FOR HELP
+    ════════════════════════════════════════ -->
+    @if (!isLoading() && activeTab() === 'help') {
+      <div class="space-y-4">
+
+        <!-- Region notice -->
+        <div class="flex items-center gap-2 px-3 py-2 rounded-2xl text-xs"
+             style="background:#e8f5e9;color:#2e7d32;">
+          <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"/>
+          </svg>
+          Questions from neighbours in <strong class="ml-0.5">{{ currentUser.location }}</strong>
+        </div>
+
+        <!-- Question cards -->
+        @for (q of questions(); track q.id) {
+          <article class="post-card rounded-3xl overflow-hidden shadow-sm"
+                   style="background:#ffffff; border:1.5px solid #f0e0d0;">
+
+            <!-- Card header -->
+            <div class="flex items-start gap-3 p-4">
+              <img [src]="q.avatar" [alt]="q.displayName"
+                   class="w-10 h-10 rounded-full object-cover shrink-0 ring-2" style="ring-color:#f0d8c0;"
+                   onerror="this.src='https://api.dicebear.com/7.x/adventurer/svg?seed=fallback'"/>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline gap-2 flex-wrap">
+                  <p class="text-sm font-semibold" style="color:#2d1a0e;">{{ q.displayName }}</p>
+                  <p class="text-xs" style="color:#a08070;">{{ timeAgo(q.createdAt) }}</p>
+                </div>
+                <h3 class="text-base font-bold mt-1 leading-snug" style="font-family:'Playfair Display',serif;color:#2d1a0e;">
+                  {{ q.title }}
+                </h3>
+              </div>
+            </div>
+
+            <!-- Optional image -->
+            @if (q.image) {
+              <div class="overflow-hidden mx-4 rounded-2xl mb-3" style="max-height:200px;">
+                <img [src]="q.image" [alt]="q.title"
+                     class="w-full object-cover" style="max-height:200px;"/>
+              </div>
+            }
+
+            <!-- Description -->
+            <div class="px-4 pb-3">
+              <p class="text-sm leading-relaxed" style="color:#4a3020;">{{ q.description }}</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex items-center gap-3 px-4 pb-4 pt-1"
+                 style="border-top:1px solid #f5ece0;">
+              <button class="flex items-center gap-1.5 mt-3 px-4 py-2 rounded-2xl text-sm font-semibold transition-colors"
+                      style="background:linear-gradient(135deg,#e07840,#c45628);color:#fff;">
+                <svg style="width:16px;height:16px;" fill="none" stroke="currentColor"
+                     stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
+                </svg>
+                Answer
+              </button>
+              <span class="mt-3 text-xs" style="color:#a08070;">
+                💬 {{ q.answerCount }} {{ q.answerCount === 1 ? 'answer' : 'answers' }}
+              </span>
+            </div>
+
+          </article>
+        }
+
+        <!-- Empty state -->
+        @if (questions().length === 0) {
+          <div class="text-center py-16">
+            <div class="text-5xl mb-3">🤔</div>
+            <p class="font-semibold" style="color:#8a6a5a;">No questions yet in {{ currentUser.location }}</p>
+            <p class="text-sm mt-1" style="color:#b09080;">Ask your neighbours for advice!</p>
+          </div>
+        }
+
+      </div>
+    }
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════
+       FLOATING ACTION BUTTON
+  ═══════════════════════════════════════════════ -->
+  <div class="fixed bottom-6 right-4 z-30 flex flex-col items-end gap-3">
+
+    @if (activeTab() === 'feed') {
+      <button (click)="openCreatePost()"
+              class="fab flex items-center gap-2 px-5 py-3.5 rounded-full font-semibold text-sm shadow-lg"
+              style="background:linear-gradient(135deg,#e07840,#c45628);color:#fff;">
+        <svg style="width:18px;height:18px;" fill="none" stroke="currentColor"
+             stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+        Share a Post
+      </button>
+    }
+
+    @if (activeTab() === 'help') {
+      <button (click)="openCreateQuestion()"
+              class="fab flex items-center gap-2 px-5 py-3.5 rounded-full font-semibold text-sm shadow-lg"
+              style="background:linear-gradient(135deg,#4caf7d,#2e7d55);color:#fff;">
+        <svg style="width:18px;height:18px;" fill="none" stroke="currentColor"
+             stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Ask a Question
+      </button>
+    }
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       MODAL: CREATE POST
+  ═══════════════════════════════════════════════ -->
+  @if (openModal() === 'post') {
+    <div class="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center modal-backdrop"
+         style="background:rgba(30,10,0,0.45);"
+         (click)="closeModal()">
+      <div class="modal-sheet w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
+           style="background:#fff8f0;"
+           (click)="$event.stopPropagation()">
+
+        <!-- Modal header -->
+        <div class="flex items-center justify-between px-5 py-4"
+             style="border-bottom:1.5px solid #f0e0d0;">
+          <h2 class="text-lg font-bold" style="font-family:'Playfair Display',serif;color:#2d1a0e;">
+            Share Your Pet 🐾
+          </h2>
+          <button (click)="closeModal()"
+                  class="w-8 h-8 rounded-full flex items-center justify-center text-lg transition-colors"
+                  style="background:#f0e0d0;color:#8a6a5a;">
+            ✕
+          </button>
+        </div>
+
+        <!-- Form -->
+        <div class="p-5 space-y-4">
+
+          <!-- Pet name -->
+          <div>
+            <label class="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style="color:#8a6a5a;">
+              Pet Name *
+            </label>
+            <input [(ngModel)]="newPost.petName" type="text" placeholder="e.g. Biscuit, Luna, Mochi…"
+                   class="w-full px-4 py-3 rounded-2xl text-sm outline-none transition-all"
+                   style="background:#fff;border:1.5px solid #e8d0bc;color:#2d1a0e;"
+                   (focus)="$any($event.target).style.borderColor='#c45628'"
+                   (blur)="$any($event.target).style.borderColor='#e8d0bc'"/>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label class="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style="color:#8a6a5a;">
+              What's happening? *
+            </label>
+            <textarea [(ngModel)]="newPost.description" rows="3"
+                      placeholder="Tell your neighbours about your furry friend…"
+                      class="w-full px-4 py-3 rounded-2xl text-sm outline-none resize-none transition-all"
+                      style="background:#fff;border:1.5px solid #e8d0bc;color:#2d1a0e;"
+                      (focus)="$any($event.target).style.borderColor='#c45628'"
+                      (blur)="$any($event.target).style.borderColor='#e8d0bc'"></textarea>
+          </div>
+
+          <!-- Image URL -->
+          <div>
+            <label class="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style="color:#8a6a5a;">
+              Image URL <span style="color:#b09080;font-weight:400;">(optional)</span>
+            </label>
+            <input [(ngModel)]="newPost.image" type="url" placeholder="https://…"
+                   class="w-full px-4 py-3 rounded-2xl text-sm outline-none transition-all"
+                   style="background:#fff;border:1.5px solid #e8d0bc;color:#2d1a0e;"
+                   (focus)="$any($event.target).style.borderColor='#c45628'"
+                   (blur)="$any($event.target).style.borderColor='#e8d0bc'"/>
+          </div>
+
+          <!-- Location (read-only) -->
+          <div class="flex items-center gap-2 px-3 py-2.5 rounded-2xl text-sm"
+               style="background:#fde8d8;color:#a05030;">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"/>
+            </svg>
+            Post will be visible to <strong class="ml-0.5">{{ currentUser.location }}</strong> residents only
+          </div>
+
+          <!-- Submit button -->
+          <button (click)="submitPost()"
+                  [disabled]="!newPost.petName.trim() || !newPost.description.trim()"
+                  class="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style="background:linear-gradient(135deg,#e07840,#c45628);color:#fff;">
+            Share with Neighbours
+          </button>
+
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- ═══════════════════════════════════════════════
+       MODAL: CREATE QUESTION
+  ═══════════════════════════════════════════════ -->
+  @if (openModal() === 'question') {
+    <div class="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center modal-backdrop"
+         style="background:rgba(10,30,15,0.45);"
+         (click)="closeModal()">
+      <div class="modal-sheet w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
+           style="background:#f0faf2;"
+           (click)="$event.stopPropagation()">
+
+        <!-- Modal header -->
+        <div class="flex items-center justify-between px-5 py-4"
+             style="border-bottom:1.5px solid #c8e6d0;">
+          <h2 class="text-lg font-bold" style="font-family:'Playfair Display',serif;color:#1a3020;">
+            Ask Your Neighbours 🙋
+          </h2>
+          <button (click)="closeModal()"
+                  class="w-8 h-8 rounded-full flex items-center justify-center text-lg transition-colors"
+                  style="background:#c8e6d0;color:#2e7d55;">
+            ✕
+          </button>
+        </div>
+
+        <!-- Form -->
+        <div class="p-5 space-y-4">
+
+          <!-- Title -->
+          <div>
+            <label class="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style="color:#4a7060;">
+              Question Title *
+            </label>
+            <input [(ngModel)]="newQuestion.title" type="text"
+                   placeholder="e.g. Best vet for puppies in Skopje?"
+                   class="w-full px-4 py-3 rounded-2xl text-sm outline-none transition-all"
+                   style="background:#fff;border:1.5px solid #b8dcc4;color:#1a3020;"
+                   (focus)="$any($event.target).style.borderColor='#2e7d55'"
+                   (blur)="$any($event.target).style.borderColor='#b8dcc4'"/>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label class="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style="color:#4a7060;">
+              Details *
+            </label>
+            <textarea [(ngModel)]="newQuestion.description" rows="3"
+                      placeholder="Add any extra details that will help your neighbours answer…"
+                      class="w-full px-4 py-3 rounded-2xl text-sm outline-none resize-none transition-all"
+                      style="background:#fff;border:1.5px solid #b8dcc4;color:#1a3020;"
+                      (focus)="$any($event.target).style.borderColor='#2e7d55'"
+                      (blur)="$any($event.target).style.borderColor='#b8dcc4'"></textarea>
+          </div>
+
+          <!-- Image URL -->
+          <div>
+            <label class="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style="color:#4a7060;">
+              Image URL <span style="color:#7aaa88;font-weight:400;">(optional)</span>
+            </label>
+            <input [(ngModel)]="newQuestion.image" type="url" placeholder="https://…"
+                   class="w-full px-4 py-3 rounded-2xl text-sm outline-none transition-all"
+                   style="background:#fff;border:1.5px solid #b8dcc4;color:#1a3020;"
+                   (focus)="$any($event.target).style.borderColor='#2e7d55'"
+                   (blur)="$any($event.target).style.borderColor='#b8dcc4'"/>
+          </div>
+
+          <!-- Location -->
+          <div class="flex items-center gap-2 px-3 py-2.5 rounded-2xl text-sm"
+               style="background:#dceee0;color:#1e5035;">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"/>
+            </svg>
+            Only <strong class="mx-0.5">{{ currentUser.location }}</strong> residents will see this
+          </div>
+
+          <!-- Submit button -->
+          <button (click)="submitQuestion()"
+                  [disabled]="!newQuestion.title.trim() || !newQuestion.description.trim()"
+                  class="w-full py-3.5 rounded-2xl font-semibold text-sm transition-all active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed"
+                  style="background:linear-gradient(135deg,#4caf7d,#2e7d55);color:#fff;">
+            Post Question
+          </button>
+
+        </div>
+      </div>
+    </div>
+  }
+
+</div>

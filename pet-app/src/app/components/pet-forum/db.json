@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "pawrent_maya",
+      "displayName": "Maya Kostadinova",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=maya",
+      "location": "Skopje"
+    },
+    {
+      "id": 2,
+      "username": "dogdad_stefan",
+      "displayName": "Stefan Ivanovski",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=stefan",
+      "location": "Skopje"
+    },
+    {
+      "id": 3,
+      "username": "catmom_elena",
+      "displayName": "Elena Petrovic",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=elena",
+      "location": "Bitola"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "username": "pawrent_maya",
+      "displayName": "Maya Kostadinova",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=maya",
+      "petName": "Biscuit",
+      "description": "Biscuit had his first bath today and he was NOT happy about it 😂 Still the goodest boy though! Anyone know a good groomer in Skopje?",
+      "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop",
+      "location": "Skopje",
+      "likes": 24,
+      "commentCount": 6,
+      "createdAt": "2025-04-22T09:15:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "username": "dogdad_stefan",
+      "displayName": "Stefan Ivanovski",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=stefan",
+      "petName": "Luna",
+      "description": "Morning walk at Gradski Park with Luna ☀️ She found three squirrels and absolutely lost it every single time. 10/10 would recommend this park for high-energy dogs!",
+      "image": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=600&fit=crop",
+      "location": "Skopje",
+      "likes": 41,
+      "commentCount": 12,
+      "createdAt": "2025-04-22T08:00:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "username": "pawrent_maya",
+      "displayName": "Maya Kostadinova",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=maya",
+      "petName": "Biscuit",
+      "description": "Adoption anniversary! 🎉 One year ago today I brought this little gremlin home from the shelter. Best decision of my life. If you're thinking about adopting — DO IT.",
+      "image": "https://images.unsplash.com/photo-1601979031925-424e53b6caaa?w=600&h=600&fit=crop",
+      "location": "Skopje",
+      "likes": 89,
+      "commentCount": 23,
+      "createdAt": "2025-04-21T18:30:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "username": "catmom_elena",
+      "displayName": "Elena Petrovic",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=elena",
+      "petName": "Mochi",
+      "description": "Mochi discovered the window sill and now considers herself queen of the city 👑",
+      "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&h=600&fit=crop",
+      "location": "Bitola",
+      "likes": 55,
+      "commentCount": 8,
+      "createdAt": "2025-04-21T14:00:00Z"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "userId": 2,
+      "username": "dogdad_stefan",
+      "displayName": "Stefan Ivanovski",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=stefan",
+      "title": "Best vet for large breeds in Skopje?",
+      "description": "Luna (Golden Retriever, 3 years old) needs her annual checkup. Looking for a vet who has experience with large breeds and is patient with anxious dogs. Any recommendations in the Skopje area?",
+      "image": null,
+      "location": "Skopje",
+      "answerCount": 4,
+      "createdAt": "2025-04-22T07:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "username": "pawrent_maya",
+      "displayName": "Maya Kostadinova",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=maya",
+      "title": "My dog keeps eating grass — is this normal?",
+      "description": "Biscuit has been eating grass almost every day during walks. He doesn't seem sick afterward but I'm a bit worried. The vet said it's usually fine but wanted to see if anyone else's dog does this.",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+      "location": "Skopje",
+      "answerCount": 7,
+      "createdAt": "2025-04-21T16:45:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "username": "catmom_elena",
+      "displayName": "Elena Petrovic",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=elena",
+      "title": "Tips for introducing a second cat?",
+      "description": "Thinking of adopting a second cat for Mochi. She's 2 years old and has been an only pet her whole life. Any tips for a smooth introduction process? How long did it take for your cats to get along?",
+      "image": null,
+      "location": "Bitola",
+      "answerCount": 5,
+      "createdAt": "2025-04-20T20:00:00Z"
+    }
+  ]
+}
