@@ -1,148 +1,199 @@
-<div class="max-w-4xl mx-auto px-6 pt-28 pb-16">
+<div class="min-h-screen bg-[#fdf8f3] font-['DM_Sans']">
 
-  <h1 class="text-3xl font-bold text-white mb-8">
-    Find Your Perfect Match 🐾
-  </h1>
+  <!-- ===== LEFT ADS ===== -->
+  <div class="hidden lg:block fixed left-0 top-0 h-screen w-40 p-3">
+    <div class="h-full rounded-2xl border border-[#f0e0d0] bg-[#fff8f0] shadow-sm flex items-center justify-center text-xs text-[#a08070]">
+      SPACE FOR ADS
+    </div>
+  </div>
 
-  <form (ngSubmit)="findMatch()" class="space-y-6">
+  <!-- ===== RIGHT ADS ===== -->
+  <div class="hidden lg:block fixed right-0 top-0 h-screen w-40 p-3">
+    <div class="h-full rounded-2xl border border-[#f0e0d0] bg-[#fff8f0] shadow-sm flex items-center justify-center text-xs text-[#a08070]">
+      SPACE FOR ADS
+    </div>
+  </div>
 
-    <!-- TYPES -->
-    <div>
-      <label class="text-gray-300 text-sm mb-2 block">
-        Preferred Animals
-      </label>
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="max-w-4xl mx-auto px-6 pt-28 pb-20">
 
-      <div class="flex flex-wrap gap-2">
+    <!-- HEADER -->
+    <div class="mb-10">
+      <h1 class="text-3xl font-bold text-[#2d1a0e]">
+        Find Your Perfect Match 🐾
+      </h1>
+      <p class="mt-2 text-sm text-[#8a6a5a]">
+        Adjust your preferences and discover compatible pets nearby.
+      </p>
+    </div>
 
-        <button 
-          *ngFor="let t of types"
-          type="button"
-          (click)="toggleType(t)"
-          class="px-4 py-2 rounded-full border transition"
-          [ngClass]="form.types.includes(t)
-            ? 'bg-blue-500 text-white border-blue-400'
-            : 'bg-[#1e293b] text-gray-300 border-white/10'">
+    <!-- FORM CARD -->
+    <form (ngSubmit)="findMatch()"
+          class="space-y-8 p-6 rounded-3xl bg-[#fff8f0] border border-[#f0e0d0] shadow-sm">
 
-          {{ t }}
+      <!-- TYPES -->
+      <div>
+        <label class="block text-xs font-semibold mb-4 uppercase tracking-wide text-[#8a6a5a]">
+          Preferred Animals
+        </label>
+
+        <div class="flex flex-wrap gap-2">
+
+          <button
+            *ngFor="let t of types"
+            type="button"
+            (click)="toggleType(t)"
+            class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 active:scale-95">
+
+            <span
+              class="block px-4 py-2 rounded-full border transition-all duration-200"
+              [ngClass]="form.types.includes(t)
+                ? 'bg-[#fde8d8] text-[#c45628] border-[#c45628] shadow-sm'
+                : 'bg-white text-[#8a6a5a] border-[#f0e0d0] hover:bg-[#fff3ea]'">
+
+              {{ t }}
+
+            </span>
+
+          </button>
+
+        </div>
+      </div>
+
+      <!-- ENERGY -->
+      <div>
+        <label class="block text-sm font-semibold mb-3 text-[#6f4e3d]">
+          Energy
+          <span class="text-[#c45628] font-bold ml-1">
+            {{ mapLevel(form.energyLevel) }}
+          </span>
+        </label>
+
+        <div class="flex items-center gap-4">
+          <span class="text-xs text-[#a08070] w-10">Low</span>
+
+          <input type="range"
+            min="1"
+            max="3"
+            [(ngModel)]="form.energyLevel"
+            name="energy"
+            class="slider-modern"/>
+
+          <span class="text-xs text-[#a08070] w-10 text-right">High</span>
+        </div>
+      </div>
+
+      <!-- SPACE -->
+      <div>
+        <label class="block text-sm font-semibold mb-3 text-[#6f4e3d]">
+          Space
+          <span class="text-[#c45628] font-bold ml-1">
+            {{ mapLevel(form.spaceNeed) }}
+          </span>
+        </label>
+
+        <div class="flex items-center gap-4">
+          <span class="text-xs text-[#a08070] w-10">Small</span>
+
+          <input type="range"
+            min="1"
+            max="3"
+            [(ngModel)]="form.spaceNeed"
+            name="space"
+            class="slider-modern"/>
+
+          <span class="text-xs text-[#a08070] w-10 text-right">Large</span>
+        </div>
+      </div>
+
+      <!-- CARE -->
+      <div>
+        <label class="block text-sm font-semibold mb-3 text-[#6f4e3d]">
+          Care
+          <span class="text-[#c45628] font-bold ml-1">
+            {{ mapLevel(form.careLevel) }}
+          </span>
+        </label>
+
+        <div class="flex items-center gap-4">
+          <span class="text-xs text-[#a08070] w-10">Easy</span>
+
+          <input type="range"
+            min="1"
+            max="3"
+            [(ngModel)]="form.careLevel"
+            name="care"
+            class="slider-modern"/>
+
+          <span class="text-xs text-[#a08070] w-10 text-right">Hard</span>
+        </div>
+      </div>
+
+      <!-- TOGGLES -->
+      <div class="grid grid-cols-2 gap-4">
+
+        <button type="button"
+          (click)="form.goodWithKids = !form.goodWithKids"
+          class="rounded-2xl transition active:scale-95">
+
+          <div class="py-3 text-center rounded-2xl border font-medium transition"
+               [ngClass]="form.goodWithKids
+                 ? 'bg-[#fde8d8] text-[#c45628] border-[#c45628]'
+                 : 'bg-white text-[#8a6a5a] border-[#f0e0d0] hover:bg-[#fff3ea]'">
+
+            Kids: {{ form.goodWithKids ? 'Yes 👍' : 'No 👎' }}
+
+          </div>
+
+        </button>
+
+        <button type="button"
+          (click)="form.goodWithPets = !form.goodWithPets"
+          class="rounded-2xl transition active:scale-95">
+
+          <div class="py-3 text-center rounded-2xl border font-medium transition"
+               [ngClass]="form.goodWithPets
+                 ? 'bg-[#fde8d8] text-[#c45628] border-[#c45628]'
+                 : 'bg-white text-[#8a6a5a] border-[#f0e0d0] hover:bg-[#fff3ea]'">
+
+            Pets: {{ form.goodWithPets ? 'Yes 🐾' : 'No 🚫' }}
+
+          </div>
 
         </button>
 
       </div>
-    </div>
 
-    <!-- ENERGY -->
-    <div>
-      <label class="text-gray-300 text-sm">
-        Energy: {{ mapLevel(form.energyLevel) }}
-      </label>
+      <!-- SUBMIT -->
+      <button
+        type="submit"
+        class="w-full py-3.5 rounded-2xl font-semibold text-white shadow-md
+               bg-gradient-to-r from-[#e07840] to-[#c45628]
+               active:scale-95 transition hover:opacity-95">
 
-      <input type="range" min="1" max="3"
-        [(ngModel)]="form.energyLevel"
-        name="energy"
-        class="w-full accent-blue-500"/>
-
-      <div class="flex justify-between text-xs text-gray-400 mt-1">
-        <span>Low</span>
-        <span>Medium</span>
-        <span>High</span>
-      </div>
-    </div>
-
-    <!-- SPACE -->
-    <div>
-      <label class="text-gray-300 text-sm">
-        Space: {{ mapLevel(form.spaceNeed) }}
-      </label>
-
-      <input type="range" min="1" max="3"
-        [(ngModel)]="form.spaceNeed"
-        name="space"
-        class="w-full accent-blue-500"/>
-
-      <div class="flex justify-between text-xs text-gray-400 mt-1">
-        <span>Small</span>
-        <span>Medium</span>
-        <span>Large</span>
-      </div>
-    </div>
-
-    <!-- CARE -->
-    <div>
-      <label class="text-gray-300 text-sm">
-        Care: {{ mapLevel(form.careLevel) }}
-      </label>
-
-      <input type="range" min="1" max="3"
-        [(ngModel)]="form.careLevel"
-        name="care"
-        class="w-full accent-blue-500"/>
-
-      <div class="flex justify-between text-xs text-gray-400 mt-1">
-        <span>Easy</span>
-        <span>Medium</span>
-        <span>Hard</span>
-      </div>
-    </div>
-
-    <!-- TOGGLES -->
-    <div class="grid grid-cols-2 gap-4">
-
-      <button type="button"
-        (click)="form.goodWithKids = !form.goodWithKids"
-        class="p-3 rounded-lg border transition"
-        [ngClass]="form.goodWithKids 
-          ? 'bg-green-500 text-white' 
-          : 'bg-[#1e293b] text-gray-300 border-white/10'">
-
-        Kids: {{ form.goodWithKids ? 'Yes' : 'No' }}
+        Find Match 🎯
 
       </button>
 
-      <button type="button"
-        (click)="form.goodWithPets = !form.goodWithPets"
-        class="p-3 rounded-lg border transition"
-        [ngClass]="form.goodWithPets 
-          ? 'bg-green-500 text-white' 
-          : 'bg-[#1e293b] text-gray-300 border-white/10'">
+    </form>
 
-        Pets: {{ form.goodWithPets ? 'Yes' : 'No' }}
+    <!-- RESULTS -->
+    <div *ngIf="results.length" id="resultsSection" class="mt-14">
 
-      </button>
+      <h2 class="text-xl font-bold text-[#2d1a0e] mb-6">
+        Top Matches 🎯
+      </h2>
 
-    </div>
+      <div class="grid md:grid-cols-3 gap-6">
 
-    <!-- SUBMIT -->
-    <button 
-      type="submit"
-      class="w-full bg-gradient-to-r from-blue-500 to-cyan-400 
-             text-white py-3 rounded-lg 
-             hover:opacity-90 transition shadow">
+        <app-pet-card
+          *ngFor="let pet of results"
+          [pet]="pet">
+        </app-pet-card>
 
-      Find Match
-
-    </button>
-
-  </form>
-
-  <!-- RESULTS -->
-  <div 
-  *ngIf="results.length" 
-  id="resultsSection"
-  class="mt-12">
-
-    <h2 class="text-xl text-white mb-6">
-      Top Matches 🎯
-    </h2>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <app-pet-card 
-        *ngFor="let pet of results"
-        [pet]="pet">
-      </app-pet-card>
+      </div>
 
     </div>
 
   </div>
-
 </div>

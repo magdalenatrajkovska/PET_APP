@@ -101,7 +101,7 @@ private pets: Pet[] = [
     careLevel: 'Easy',
     goodWithKids: true,
     goodWithPets: true,
-    description: 'Tiny hamster that loves running on wheels',
+    description: 'Tiny hamster that loves',
     imageUrl: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsp-ao.shortpixel.ai%2Fclient%2Fq_lossy%2Cret_img%2Cw_1000%2Fhttps%3A%2F%2Fwww.ukpets.com%2Fblog%2Fwp-content%2Fuploads%2F2023%2F03%2Fsyrian-hamster-colors-1.jpg&f=1&nofb=1&ipt=e7f0d4d03eb1f8b19c23ce2b2ce812de4712cd7d034d6414277cb069ce583033'
   },
   {

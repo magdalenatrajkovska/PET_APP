@@ -1,33 +1,93 @@
-<p>pet-details works!</p>
-<div class="p-6 max-w-4xl mx-auto" *ngIf="pet">
+<div class="min-h-screen bg-[#fdf8f3] font-['DM_Sans']">
 
-  <h1 class="text-3xl font-bold mb-4">{{ pet.name }}</h1>
+  <div class="max-w-4xl mx-auto px-6 py-12" *ngIf="pet">
 
-  <img [src]="pet.imageUrl" 
-       class="w-full h-80 object-cover rounded-xl mb-6" />
+    <!-- HERO CARD -->
+    <div class="rounded-3xl overflow-hidden bg-[#fff8f0] border border-[#f0e0d0] shadow-sm">
 
-  <div class="grid grid-cols-2 gap-4 text-gray-700">
+      <!-- IMAGE -->
+      <div class="relative h-80 overflow-hidden">
 
-    <p><strong>Type:</strong> {{ pet.type }}</p>
-    <p><strong>Age:</strong> {{ pet.age }}</p>
+        <img
+          [src]="pet.imageUrl"
+          class="w-full h-full object-cover"
+        />
 
-    <p><strong>Energy:</strong> {{ pet.energyLevel }}</p>
-    <p><strong>Space:</strong> {{ pet.spaceNeed }}</p>
+        <!-- overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#2d1a0e]/40 via-transparent to-transparent"></div>
 
-    <p><strong>Care:</strong> {{ pet.careLevel }}</p>
+        <!-- title -->
+        <div class="absolute bottom-4 left-5 text-white">
+          <h1 class="text-3xl font-bold drop-shadow">
+            {{ pet.name }}
+          </h1>
+          <p class="text-sm text-white/80">
+            {{ pet.type }} • {{ pet.age }} years old
+          </p>
+        </div>
 
-    <p>
-      👶 {{ pet.goodWithKids ? 'Good with kids' : 'Not good with kids' }}
-    </p>
+      </div>
 
-    <p>
-      🐾 {{ pet.goodWithPets ? 'Good with pets' : 'Prefers to be alone' }}
-    </p>
+      <!-- accent line -->
+      <div class="h-[3px] bg-gradient-to-r from-[#e07840] to-[#c45628]"></div>
+
+      <!-- CONTENT -->
+      <div class="p-6 space-y-2">
+
+        <!-- STATS -->
+        <div class="info-row">
+          <span class="label">Type</span>
+          <span class="value">{{ pet.type }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Age</span>
+          <span class="value">{{ pet.age }} yrs</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Energy</span>
+          <span class="value">{{ pet.energyLevel }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Space</span>
+          <span class="value">{{ pet.spaceNeed }}</span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Care</span>
+          <span class="value">{{ pet.careLevel }}</span>
+        </div>
+
+        <!-- COMPATIBILITY -->
+        <div class="info-row">
+          <span class="label">Kids</span>
+          <span class="value">
+            {{ pet.goodWithKids ? 'Good 👶' : 'No' }}
+          </span>
+        </div>
+
+        <div class="info-row">
+          <span class="label">Pets</span>
+          <span class="value">
+            {{ pet.goodWithPets ? 'Friendly 🐾' : 'Alone' }}
+          </span>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="mt-6">
+          <h2 class="text-xs font-semibold uppercase tracking-wide text-[#8a6a5a] mb-2">
+            About
+          </h2>
+
+          <p class="text-sm text-[#4a3020] leading-relaxed">
+            {{ pet.description }}
+          </p>
+        </div>
+
+      </div>
+    </div>
 
   </div>
-
-  <p class="mt-6 text-gray-600">
-    {{ pet.description }}
-  </p>
-
 </div>

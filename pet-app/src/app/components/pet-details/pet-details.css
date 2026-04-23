@@ -1,0 +1,33 @@
+.info-row {
+    background: #fde8d8;
+    border: 1px solid #f0d0b8;
+  
+    padding: 12px 14px;
+    border-radius: 16px;
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    font-size: 14px;
+    font-weight: 500;
+  
+    transition: all 0.2s ease;
+  }
+  
+  .info-row:hover {
+    background: #fff3ea;
+    transform: translateY(-1px);
+  }
+  
+  .label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #8a6a5a;
+  }
+  
+  .value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #c45628;
+  }

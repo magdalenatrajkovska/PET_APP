@@ -1,0 +1,24 @@
+.slider-mini {
+    -webkit-appearance: none;
+    appearance: none;
+  
+    width: 140px;
+    height: 4px;
+  
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f0e0d0, #fde8d8);
+    outline: none;
+  }
+  
+  .slider-mini::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  
+    background: linear-gradient(135deg, #e07840, #c45628);
+    box-shadow: 0 2px 8px rgba(196, 86, 40, 0.35);
+    cursor: pointer;
+  }

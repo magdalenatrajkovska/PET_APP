@@ -1,0 +1,30 @@
+.slider-modern {
+    -webkit-appearance: none;
+    appearance: none;
+  
+    width: 160px;
+    height: 8px;
+  
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f0e0d0, #fde8d8);
+    outline: none;
+  }
+  
+  /* thumb */
+  .slider-modern::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+  
+    background: linear-gradient(135deg, #e07840, #c45628);
+    box-shadow: 0 3px 10px rgba(196, 86, 40, 0.35);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+  
+  .slider-modern::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }

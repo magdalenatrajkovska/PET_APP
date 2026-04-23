@@ -1,0 +1,17 @@
+.badge {
+    padding: 6px 10px;
+    border-radius: 999px;
+  
+    background: #fde8d8;
+    color: #c45628;
+  
+    font-weight: 600;
+    border: 1px solid #f0d0b8;
+  
+    transition: all 0.2s ease;
+  }
+  
+  .badge:hover {
+    background: #fff3ea;
+    transform: translateY(-1px);
+  }

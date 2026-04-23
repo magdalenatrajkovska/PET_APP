@@ -1,79 +1,134 @@
-<div class="p-6">
+<div class="min-h-screen relative" style="background:#fdf8f3; font-family:'DM Sans',sans-serif;">
 
-  <div class="max-w-6xl mx-auto px-6 pt-28 pb-10">
+  <!-- LEFT AD SPACE -->
+  <div class="hidden lg:block fixed left-0 top-0 h-full w-[160px] p-3 z-10">
+    <div class="h-full rounded-2xl border border-[#f0e0d0] bg-[#fff8f0] flex items-center justify-center text-xs"
+         style="color:#b09080;">
+      SPACE FOR ADS
+    </div>
+  </div>
 
-  <div class="grid md:grid-cols-2 gap-10 items-center">
+  <!-- RIGHT AD SPACE -->
+  <div class="hidden lg:block fixed right-0 top-0 h-full w-[160px] p-3 z-10">
+    <div class="h-full rounded-2xl border border-[#f0e0d0] bg-[#fff8f0] flex items-center justify-center text-xs"
+         style="color:#b09080;">
+      SPACE FOR ADS
+    </div>
+  </div>
 
-    <!-- LEFT SIDE -->
-    <div>
+  <!-- CENTER CONTENT -->
+  <div class="lg:mx-[170px]">
 
-      <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">
-        Find Your <span class="text-blue-400">Perfect Pet</span> Companion 🐾
-      </h1>
+    <!-- HERO SECTION -->
+    <div class="max-w-6xl mx-auto px-6 pt-28 pb-14">
 
-      <p class="mt-4 text-gray-400 text-lg">
-        Browse pets looking for a home and discover the one that fits your lifestyle.
-      </p>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
 
-      <div class="mt-6 flex gap-4">
+        <!-- LEFT SIDE -->
+        <div>
 
-        <button 
-          routerLink="/match"
-          class="bg-linear-to-r from-blue-500 to-cyan-400 
-                 text-white px-6 py-3 rounded-lg 
-                 hover:opacity-90 transition shadow">
-          Find Match
-        </button>
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight"
+              style="color:#2d1a0e;">
+            Find Your <span style="color:#c45628;">Perfect Pet</span> Companion 🐾
+          </h1>
 
-        <button 
-          routerLink="/add"
-          class="border border-white/20 text-gray-300 px-6 py-3 rounded-lg 
-                 hover:bg-white/10 transition">
-          Add a Pet
-        </button>
+          <p class="mt-5 text-lg leading-relaxed"
+             style="color:#8a6a5a;">
+            Browse pets looking for a home and discover the one that fits your lifestyle.
+            Every companion deserves a warm place.
+          </p>
+
+          <div class="mt-7 flex gap-4 flex-wrap">
+
+            <button routerLink="/match"
+              class="px-6 py-3 rounded-2xl font-semibold text-white shadow-md transition active:scale-95"
+              style="background:linear-gradient(135deg,#e07840,#c45628);">
+              Find Match 🐾
+            </button>
+
+            <button routerLink="/add"
+              class="px-6 py-3 rounded-2xl font-semibold transition"
+              style="background:#fff8f0;border:1.5px solid #f0dece;color:#8a6a5a;">
+              Add a Pet
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="relative">
+
+          <div class="rounded-3xl overflow-hidden shadow-lg"
+               style="background:#fff8f0;border:1.5px solid #f0e0d0;">
+
+            <img
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fb2%2Fcf%2F02%2Fb2cf025c1849a4a939c261088783e8fe.jpg&f=1&nofb=1"
+              class="w-full h-[360px] object-cover"
+            />
+
+          </div>
+
+          <div class="absolute inset-0 rounded-3xl -z-10"
+               style="background:radial-gradient(circle at center, rgba(224,120,64,0.18), transparent 60%); filter:blur(20px);">
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LISTING SECTION -->
+    <div class="max-w-6xl mx-auto px-6 pb-16">
+
+      <div class="flex items-center justify-between mb-6">
+
+        <h2 class="text-2xl font-bold" style="color:#2d1a0e;">
+          Available Pets 🐾
+        </h2>
+
+        <span class="text-sm px-3 py-1 rounded-full"
+              style="background:#fde8d8;color:#c45628;">
+          Fresh listings in your area
+        </span>
+
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+
+        <app-pet-card
+          *ngFor="let pet of pets"
+          [pet]="pet">
+        </app-pet-card>
+
+      </div>
+
+      <div *ngIf="pets.length === 0"
+           class="text-center py-16">
+
+        <div class="text-5xl mb-3">🐶</div>
+
+        <p class="font-semibold" style="color:#8a6a5a;">
+          No pets available right now
+        </p>
+
+        <p class="text-sm mt-1" style="color:#b09080;">
+          Check back soon for new companions
+        </p>
 
       </div>
 
     </div>
 
-    <!-- RIGHT SIDE -->
-    <div class="relative">
-
-      <img 
-        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fb2%2Fcf%2F02%2Fb2cf025c1849a4a939c261088783e8fe.jpg&f=1&nofb=1&ipt=6cf994e7f2b7d28557ee90b96c3de4d161db4dc8ae4962723e4be450f44fe245"
-        class="rounded-2xl shadow-xl w-full object-cover"
-      />
-
-      <!-- Glow effect -->
-      <div class="absolute inset-0 rounded-2xl bg-blue-500/10 blur-2xl -z-10"></div>
-
-    </div>
-
   </div>
 
-</div>
-  <h2 class="text-2xl font-bold mb-6">Available Pets 🐾</h2>
-
-  <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-
-    <app-pet-card
-      *ngFor="let pet of pets"
-      [pet]="pet">
-    </app-pet-card>
-
-  </div>
-  <button 
-  *ngIf="showScrollTop"
-  (click)="scrollToTop()"
-  class="fixed bottom-6 right-6 
-         bg-gradient-to-r from-blue-500 to-cyan-400 
-         text-white w-12 h-12 
-         rounded-full shadow-lg 
-         flex items-center justify-center
-         hover:scale-110 transition z-50">
-
-  ↑
-
-</button>
+  <!-- SCROLL TO TOP -->
+  <button
+    *ngIf="showScrollTop"
+    (click)="scrollToTop()"
+    class="fixed bottom-6 right-6 w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition active:scale-95"
+    style="background:linear-gradient(135deg,#e07840,#c45628);color:#fff;">
+    ↑
+  </button>
 
 </div>

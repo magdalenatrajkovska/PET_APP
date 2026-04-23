@@ -1,17 +1,120 @@
 @import "tailwindcss";
 
-/* your global styles */
+/* ─────────────────────────────
+   ROOT / BASE THEME
+───────────────────────────── */
 body {
-  background-color: #347dc6;
+  background-color: #fdf8f3; /* main warm background */
   min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: #2d1a0e; /* primary text */
 }
+
+/* ─────────────────────────────
+   TYPOGRAPHY
+───────────────────────────── */
 .title {
   font-size: 1.125rem; /* text-lg */
-  font-weight: 600;    /* font-semibold */
-  color: white;
+  font-weight: 600;
+  color: #2d1a0e; /* dark warm text */
 }
 
 .text-muted {
   font-size: 0.875rem; /* text-sm */
-  color: #9ca3af;      /* gray-400 */
+  color: #8a6a5a; /* warm muted */
+}
+
+/* Optional: softer muted */
+.text-soft {
+  color: #b09080;
+}
+
+/* ─────────────────────────────
+   SURFACES
+───────────────────────────── */
+.surface {
+  background-color: #fff8f0;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1.5px solid #f0e0d0;
+  border-radius: 1.5rem;
+}
+
+/* ─────────────────────────────
+   PRIMARY (ORANGE SYSTEM)
+───────────────────────────── */
+.bg-primary {
+  background-color: #c45628;
+}
+
+.bg-primary-soft {
+  background-color: #fde8d8;
+}
+
+.text-primary {
+  color: #c45628;
+}
+
+.border-primary {
+  border-color: #e07840;
+}
+
+/* Gradient button */
+.btn-primary {
+  background: linear-gradient(135deg, #e07840, #c45628);
+  color: #ffffff;
+}
+
+/* ─────────────────────────────
+   SECONDARY (GREEN SYSTEM)
+───────────────────────────── */
+.bg-secondary {
+  background-color: #2e7d55;
+}
+
+.bg-secondary-soft {
+  background-color: #dceee0;
+}
+
+.text-secondary {
+  color: #2e7d55;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #4caf7d, #2e7d55);
+  color: #ffffff;
+}
+
+/* ─────────────────────────────
+   UI ELEMENTS
+───────────────────────────── */
+.ui-soft {
+  background-color: #f5ede6;
+}
+
+.input {
+  background: #ffffff;
+  border: 1.5px solid #e8d0bc;
+  color: #2d1a0e;
+  border-radius: 1rem;
+}
+
+.input:focus {
+  border-color: #c45628;
+  outline: none;
+}
+
+/* ─────────────────────────────
+   BADGES / CHIPS
+───────────────────────────── */
+.badge-primary {
+  background: #fde8d8;
+  color: #c45628;
+}
+
+.badge-secondary {
+  background: #dceee0;
+  color: #1e5035;
 }
